@@ -2,20 +2,39 @@
 
 namespace Emerald\Type;
 
+use Emerald\Type\Abstracts\Type;
+use Emerald\Constant\FontEncodings;
+
 /**
- * Font object for text
+ * FontType object for text
  */
-class Font extends AbstractType
+class Font extends Type
 {
 
     public function __construct()
     {
-		$this->format = '<</Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
+        parent::__construct();
+        $this->format = '<</Type /Font /BaseFont /%s /Subtype /Type1 /Encoding /%s >>';
     }
 
-    public function setValue()
+    /**
+     * Set font's name , bold  and endcoding (f, b, e)
+     * 
+     * @param Array $values
+     *
+     * @return void
+     */
+    public function setValue($value)
     {
-        $this->out = $this->format;
+        if ($value['b']) {
+            $value['f'] = $value['f'] . '-Bold';
+        }
+        // -Oblique
+        if ($value['e']) {
+            $value['e'] = FontEncodings::WINANSI;
+        }
+
+        $this->out = sprintf($this->format, $value['f'], $value['e']);
     }
 
 }

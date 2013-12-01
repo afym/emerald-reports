@@ -4,29 +4,31 @@ namespace Emerald\Pdf\Page;
 
 class Dimension
 {
-	/**
-	* @var float page's width
-	*/
-	private $width;
 
-	/**
-	* @var float page's height
-	*/
-	private $height;
+    /**
+     * @var float page's width
+     */
+    private $width;
 
-	public function __construct($width, $height)
-	{
-		$this->width = $width;
-		$this->height = $height;
-	}
+    /**
+     * @var float page's height
+     */
+    private $height;
 
-	public function getWidth()
-	{
-		return $this->width;
-	}
+    public function __construct($width, $height)
+    {
+        $this->width = $width;
+        $this->height = $height;
+    }
 
-	public function getHeight()
-	{
-		return $this->height;
-	}
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
 }

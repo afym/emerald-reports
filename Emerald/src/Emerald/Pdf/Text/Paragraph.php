@@ -2,14 +2,21 @@
 
 namespace Emerald\Pdf\Text;
 
-use Emerald\Pdf\Element;
+use Emerald\Interfaces\Pdf\Element;
 
 class Paragraph implements Element
 {
-	private $content;
 
-	public function __construct($content)
-	{
-		$this->content = $content;
-	}
+    private $content;
+
+    public function __construct($content)
+    {
+        $this->content = $content;
+    }
+
+    public function out()
+    {
+        
+    }
+
 }

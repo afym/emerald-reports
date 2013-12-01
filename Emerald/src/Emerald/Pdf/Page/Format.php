@@ -2,116 +2,139 @@
 
 namespace Emerald\Pdf\Page;
 
-use Emerald\Constant\SizeEnum;
+use Emerald\Assembly\DimensionFactory;
 use Emerald\Constant\OrientationEnum;
+use Emerald\Constant\VersionEnum;
 
-class Format 
+class Format
 {
-	/**
-	* @var Size format's size
-	*/
-	private $size;
 
-	/**
-	* @var float top margin
-	*/
-	private $top;
+    /**
+     * @var Size format's size
+     */
+    private $size;
 
-	/**
-	* @var float bottom margin
-	*/
-	private $bottom;
+    /**
+     * @var float top margin
+     */
+    private $top;
 
-	/**
-	* @var float left margin
-	*/
-	private $left;
+    /**
+     * @var float bottom margin
+     */
+    private $bottom;
 
-	/**
-	* @var float right margin
-	*/
-	private $right;
+    /**
+     * @var float left margin
+     */
+    private $left;
 
-	/**
-	* @var String orientation
-	*/
-	private $orientation;
+    /**
+     * @var float right margin
+     */
+    private $right;
 
-	public function __construct(Size $size = null, $top = null, $bottom = null, $left = null, $right = null)
-	{
-		$this->size = !is_null($size) ? $size : new Size(SizeEnum::A4);
-		$this->top = !is_null($top) ? $top : 5;
-		$this->bottom = !is_null($bottom) ? $bottom : 5;
-		$this->left = !is_null($left) ? $left : 5;
-		$this->top = !is_null($right) ? $right : 5;
-		$this->orientation = OrientationEnum::PORTRAIT;
-	}
+    /**
+     * @var String orientation
+     */
+    private $orientation;
+    
 
-	public function setTop($top) 
-	{
-		$this->top = $top;
-		return $this;
-	}
+    private $version;
 
-	public function setBottom($bottom) 
-	{
-		$this->bottom = $bottom;
-		return $this;
-	}
+    public function __construct($size, $version = null, $top = null, $bottom = null, $left = null, $right = null)
+    {
+        $this->size = !is_null($size) ? DimensionFactory::get($size) : DimensionFactory::get(SizeEnum::A4);
+        $this->version = !is_null($version) ? $version : VersionEnum::PDF_1_7;
+        $this->top = !is_null($top) ? $top : 5;
+        $this->bottom = !is_null($bottom) ? $bottom : 5;
+        $this->left = !is_null($left) ? $left : 5;
+        $this->top = !is_null($right) ? $right : 5;
+        $this->orientation = OrientationEnum::PORTRAIT;
+    }
 
-	public function setLeft($left)
-	{
-		$this->left = $left;
-		return $this;
-	}
+    public function setVersion($version)
+    {
+        $this->version = $version;
 
-	public function setRight($right) 
-	{
-		$this->right = $right;
-		return $this;
-	}
+        return $this;
+    }
 
-	public function setPortrait()
-	{
-		$this->orientation = OrientationEnum::PORTRAIT;
+    public function setTop($top)
+    {
+        $this->top = $top;
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function setLandscape()
-	{
-		$this->orientation = OrientationEnum::LANDSCAPE;
+    public function setBottom($bottom)
+    {
+        $this->bottom = $bottom;
 
-		return $this;
-	}	
+        return $this;
+    }
 
-	public function getTop() 
-	{
-		return $this->top;
-	}
+    public function setLeft($left)
+    {
+        $this->left = $left;
 
-	public function getBottom() 
-	{
-		return $this->bottom;
-	}
+        return $this;
+    }
 
-	public function getLeft()
-	{
-		return $this->left;
-	}
+    public function setRight($right)
+    {
+        $this->right = $right;
 
-	public function getRight() 
-	{
-		return $this->right;
-	}
+        return $this;
+    }
 
-	public function getOrientation()
-	{
-		return $this->orientation;
-	}
+    public function setPortrait()
+    {
+        $this->orientation = OrientationEnum::PORTRAIT;
 
-	public function getSize()
-	{
-		return $this->size;
-	}
+        return $this;
+    }
+
+    public function setLandscape()
+    {
+        $this->orientation = OrientationEnum::LANDSCAPE;
+
+        return $this;
+    }
+
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    public function getTop()
+    {
+        return $this->top;
+    }
+
+    public function getBottom()
+    {
+        return $this->bottom;
+    }
+
+    public function getLeft()
+    {
+        return $this->left;
+    }
+
+    public function getRight()
+    {
+        return $this->right;
+    }
+
+    public function getOrientation()
+    {
+        return $this->orientation;
+    }
+
+    public function getSize()
+    {
+        return $this->size;
+    }
+
 }

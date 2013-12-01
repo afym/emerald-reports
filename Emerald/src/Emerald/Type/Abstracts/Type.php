@@ -1,13 +1,13 @@
 <?php
 
-namespace Emerald\Type;
+namespace Emerald\Type\Abstracts;
 
 use Emerald\Interfaces\OutputInterface;
 
 /**
 *   Abstract class for pdf object types
 */
-abstract class AbstractType implements OutputInterface
+abstract class Type implements OutputInterface
 {
     /**
     * @var String $format Type's format

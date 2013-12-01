@@ -2,15 +2,19 @@
 
 namespace Emerald\Type;
 
-class Resources extends AbstractType
+use Emerald\Type\Abstracts\Type;
+
+class Resources extends Type
 {
-	public function __construct()
+
+    public function __construct()
     {
-        $this->format = ' /Resources %s';
+        parent::__construct();
+        $this->format = '<< /ProcSet [/PDF /Text /ImageB /ImageC /ImageI] /Font << %s >> /XObject << %s >> >>';
     }
 
     /**
-     * Set page's resources (r)
+     * Set page's resources fonts and x objects (f, x)
      * 
      * @param Array $values
      *
@@ -18,6 +22,7 @@ class Resources extends AbstractType
      */
     public function setValue($value)
     {
-        $this->out = sprintf($this->format, $value['r']);
+        $this->out = sprintf($this->format, $value['f'], $value['x']);
     }
+
 }

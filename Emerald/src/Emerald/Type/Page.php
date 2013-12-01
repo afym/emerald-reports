@@ -2,12 +2,15 @@
 
 namespace Emerald\Type;
 
-class Page extends AbstractType
+use Emerald\Type\Abstracts\Type;
+
+class Page extends Type
 {
 
     public function __construct()
     {
-        $this->format = '<</Type /Page %s %s %s>>';
+        parent::__construct();
+        $this->format = '<</Type /Page /Parent %s /Resources %s /Contents %s>>';
     }
 
     /**

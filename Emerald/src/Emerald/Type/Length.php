@@ -2,10 +2,14 @@
 
 namespace Emerald\Type;
 
-class Length extends AbstractType
+use Emerald\Type\Abstracts\Type;
+
+class Length extends Type
 {
-	public function __construct()
+
+    public function __construct()
     {
+        parent::__construct();
         $this->format = '<</Length %s>>';
     }
 
@@ -20,4 +24,5 @@ class Length extends AbstractType
     {
         $this->out = sprintf($this->format, $value['l']);
     }
+
 }
