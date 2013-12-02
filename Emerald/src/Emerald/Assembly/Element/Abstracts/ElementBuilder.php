@@ -12,5 +12,10 @@ abstract class ElementBuilder
         $this->out = '';
     }
 
+    protected function append($out)
+    {
+        $this->out .= $this->newLine($out);
+    }
+
     abstract public function build();
 }
