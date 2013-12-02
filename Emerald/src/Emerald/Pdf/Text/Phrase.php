@@ -14,9 +14,9 @@ class Phrase  implements Element
     private $fontReference;
 
     /**
-     * @var float font's reference
+     * @var float text's size
      */
-    private $fontSize;
+    private $size;
 
     /**
      * @var float string's left position
@@ -58,12 +58,13 @@ class Phrase  implements Element
      */
     private $isColored;
 
-    public function __construct($string, $left, $bottom, Font $font = null)
+    public function __construct($string, $bottom, $left, $size = 8.0, Font $font = null)
     {
         $this->string = $string;
         $this->left = $left;
         $this->bottom = $bottom;
         $this->font = $font;
+        $this->size = $size;
         $this->red = 0;
         $this->green = 0;
         $this->blue = 0;
@@ -76,9 +77,9 @@ class Phrase  implements Element
         return $this;
     }
 
-    public function setFontSize($fontSize)
+    public function setSize($size)
     {
-        $this->fontSize = $fontSize;
+        $this->size = $size;
         return $this;
     }
 
@@ -105,9 +106,9 @@ class Phrase  implements Element
         return $this->fontReference;
     }
 
-    public function getFontSize()
+    public function getSize()
     {
-        return $this->fontSize;
+        return $this->size;
     }
 
     public function getLeft()
