@@ -139,6 +139,21 @@ class Phrase  implements Element
         return $this;
     }
 
+    public function getRed()
+    {
+        return $this->red;
+    }
+    
+    public function getGreen()
+    {
+        return $this->green;
+    }
+    
+    public function getBlue()
+    {
+        return $this->blue;
+    }
+    
     public function isColored()
     {
         return $this->isColored;
