@@ -101,4 +101,8 @@ class Phrase  implements Element
         return $this->string;
     }
 
+    public function getFont()
+    {
+        return $this->font;
+    }
 }
