@@ -38,12 +38,36 @@ class Phrase  implements Element
      */
     private $font;
 
+    /**
+     * @var int red color 
+     */
+    private $red;
+    
+    /**
+     * @var int green color 
+     */
+    private $green;
+    
+    /**
+     * @var int blue color 
+     */
+    private $blue;
+
+    /**
+     * @var boolean is colored text
+     */
+    private $isColored;
+
     public function __construct($string, $left, $bottom, Font $font = null)
     {
         $this->string = $string;
         $this->left = $left;
         $this->bottom = $bottom;
         $this->font = $font;
+        $this->red = 0;
+        $this->green = 0;
+        $this->blue = 0;
+ 
     }
 
     public function setFontReference($fontReference)
@@ -105,4 +129,19 @@ class Phrase  implements Element
     {
         return $this->font;
     }
+    
+    public function setColor($red, $green, $blue)
+    {
+        $this->isColored = true;
+        $this->red = $red;
+        $this->green = $green;
+        $this->blue = $blue;
+        return $this;
+    }
+
+    public function isColored()
+    {
+        return $this->isColored;
+    }
+
 }
