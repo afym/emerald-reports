@@ -14,6 +14,7 @@ class Font
     private $bold;
     private $italic;
     private $underline;
+    private $isColored;
 
     public function __construct($familiy)
     {
@@ -24,6 +25,7 @@ class Font
         $this->red = 0;
         $this->green = 0;
         $this->blue = 0;
+        $this->isColored = false;
     }
 
     public function setFamiliy($familiy)
@@ -52,6 +54,7 @@ class Font
 
     public function setColor($red, $green, $blue)
     {
+        $this->isColored = true;
         $this->red = $red;
         $this->green = $green;
         $this->blue = $blue;
@@ -63,4 +66,23 @@ class Font
         return $this->familiy;
     }
 
+    public function getBold()
+    {
+        return $this->bold;
+    }
+    
+    public function getItalic()
+    {
+        return $this->italic;
+    }
+    
+    public function getUnderline()
+    {
+        return $this->underline;
+    }
+    
+    public function isColored()
+    {
+        return $this->isColored;
+    }
 }
