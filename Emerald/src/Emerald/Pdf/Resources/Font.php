@@ -3,18 +3,17 @@
 namespace Emerald\Pdf\Page;
 
 use Emerald\Interfaces\Pdf\Resource;
+use Emerald\Constant\FontEncodings;
 
 class Font
 {
 
     private $familiy;
-    private $red;
-    private $green;
-    private $blue;
     private $bold;
     private $italic;
     private $underline;
     private $isColored;
+    private $encoding;
 
     public function __construct($familiy)
     {
@@ -22,10 +21,7 @@ class Font
         $this->bold = false;
         $this->italic = false;
         $this->underline = false;
-        $this->red = 0;
-        $this->green = 0;
-        $this->blue = 0;
-        $this->isColored = false;
+        $this->encoding = FontEncodings::WINANSI;
     }
 
     public function setFamiliy($familiy)
@@ -52,15 +48,12 @@ class Font
         return $this;
     }
 
-    public function setColor($red, $green, $blue)
+    public function setEncoding($encoding)
     {
-        $this->isColored = true;
-        $this->red = $red;
-        $this->green = $green;
-        $this->blue = $blue;
+        $this->encoding = $encoding;
         return $this;
     }
-
+    
     public function getFamiliy()
     {
         return $this->familiy;
@@ -81,8 +74,8 @@ class Font
         return $this->underline;
     }
     
-    public function isColored()
+    public function getEncoding()
     {
-        return $this->isColored;
+        return $this->encoding;
     }
 }
