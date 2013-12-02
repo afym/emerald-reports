@@ -4,48 +4,72 @@ namespace Emerald\Assembly\Document;
 
 use Emerald\Document\Object;
 use Emerald\Assembly\Document\Abstracts\Stack;
+USE Emerald\Pdf\Information;
 use Emerald\Pdf\Page\Format;
-use Emerald\Type\Pages;
-use Emerald\Type\Catalog;
 
 class HeaderStack extends Stack
 {
 
-    private $format;
     private $page;
     private $catalog;
-    private $pagesType;
-    private $catalogType;
-    private $pagesReference;
+    private $resource;
+    private $information;
+    private $info;
+    private $pagesReferenceKids;
+    private $pagesReferenceCount;
 
-    public function __construct()
+    public function __construct(Format $format)
     {
-        parent::__construct();
+        parent::__construct($format);
 
-        $this->pagesType = new Pages();
-        $this->catalogType = new Catalog();
-        $this->pagesReference = new \ArrayObject();
-    }
-
-    public function setFormat(Format $format)
-    {
-        $this->format = $format;
-
-        return $this;
+        $this->info = new Information();
+        $this->pagesReferenceKids = '';
+        $this->pagesReferenceCount = 0;
     }
 
     public function setPage(Object $page)
     {
         $this->page = $page;
-
         return $this;
     }
 
     public function setCatalog(Object $catalog)
     {
         $this->catalog = $catalog;
-
         return $this;
+    }
+
+    public function setResource(Object $resource)
+    {
+        $this->resource = $resource;
+        return $this;
+    }
+
+    public function setInformation(Object $information)
+    {
+        $this->information = $information;
+        return $this;
+    }
+
+    public function setInfo(Information $info)
+    {
+        $this->info = $info;
+        return $this;
+    }
+
+    public function getInfo()
+    {
+        return $this->info;
+    }
+
+    public function getInformation()
+    {
+        return $this->information;
+    }
+
+    public function getResource()
+    {
+        return $this->resource;
     }
 
     public function getPage()
@@ -58,60 +82,21 @@ class HeaderStack extends Stack
         return $this->catalog;
     }
 
+    public function getPagesReferenceKids()
+    {
+        return $this->pagesReferenceKids;
+    }
+
+    public function getPagesReferenceCount()
+    {
+        return $this->pagesReferenceCount;
+    }
+
     public function appendPageReference(Object $reference)
     {
-        $this->pagesReference->append($reference->getReference());
-
+        $this->pagesReferenceKids .= " {$reference->getReference()}";
+        $this->pagesReferenceCount++;
         return $this;
-    }
-
-    public function make()
-    {
-        $this->buildVersion();
-        $this->buildPage();
-        $this->buildCatalog();
-
-        return $this->out;
-    }
-
-    private function buildVersion()
-    {
-        $this->out .= $this->parse($this->format->getVersion());
-    }
-
-    private function buildPage()
-    {
-        $this->pagesType->setValue(array(
-            'k' => $this->getKids(),
-            'c' => $this->pagesReference->count(),
-            'w' => $this->format->getSize()->getWidth(),
-            'h' => $this->format->getSize()->getHeight(),
-        ));
-
-        $this->page->setContent($this->parse($this->pagesType->out()));
-        $this->out .= $this->parse($this->page->out());
-    }
-
-    private function buildCatalog()
-    {
-        $this->catalogType->setValue(array(
-            'p' => $this->page->getReference(),
-        ));
-
-        $this->catalog->setContent($this->catalogType->out());
-        $this->out .= $this->parse($this->catalog->out());
-    }
-
-    private function getKids()
-    {
-        $kids = $this->pagesReference->getArrayCopy();
-        $out = '';
-
-        foreach ($kids as $kid) {
-            $out .= "$kid ";
-        }
-
-        return $out;
     }
 
 }

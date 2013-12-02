@@ -38,8 +38,6 @@ class Format
      * @var String orientation
      */
     private $orientation;
-    
-
     private $version;
 
     public function __construct($size, $version = null, $top = null, $bottom = null, $left = null, $right = null)
@@ -132,9 +130,22 @@ class Format
         return $this->orientation;
     }
 
-    public function getSize()
+    public function getWidth()
     {
-        return $this->size;
+        if ($this->orientation == OrientationEnum::LANDSCAPE) {
+            return $this->size->getHeight();
+        }
+
+        return $this->size->getWidth();
+    }
+
+    public function getHeight()
+    {
+        if ($this->orientation == OrientationEnum::LANDSCAPE) {
+            return $this->size->getWidth();
+        }
+
+        return $this->size->getHeight();
     }
 
 }

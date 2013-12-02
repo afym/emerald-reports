@@ -3,9 +3,9 @@
 namespace Emerald\Assembly\Document;
 
 use Emerald\Document\Object;
+use Emerald\Pdf\Page\Format;
 use Emerald\Interfaces\Pdf\Element;
 use Emerald\Assembly\Document\Abstracts\Stack;
-use Emerald\Type\Page;
 
 class PageStack extends Stack
 {
@@ -16,36 +16,31 @@ class PageStack extends Stack
     private $pagesElements;
     private $parentReference;
     private $resourcesReference;
-    private $pageType;
 
-    public function __construct()
+    public function __construct(Format $format)
     {
-        parent::__construct();
+        parent::__construct($format);
 
         $this->pagesReference = new \ArrayObject();
         $this->pagesContent = new \ArrayObject();
         $this->pagesElements = new \ArrayObject();
-        $this->pageType = new Page();
     }
 
-    public function setParentReference($reference)
+    public function setParentReference(Object $reference)
     {
         $this->parentReference = $reference;
-
         return $this;
     }
 
-    public function setResourcesReference($reference)
+    public function setResourcesReference(Object $reference)
     {
         $this->resourcesReference = $reference;
-
         return $this;
     }
 
     public function appendPageReference(Object $reference)
     {
         $this->pagesReference->append($reference);
-
         return $this;
     }
 
@@ -54,57 +49,53 @@ class PageStack extends Stack
         $this->pagesContent->append($content);
         $this->contentKey = $content->getReference();
         $this->pagesElements->offsetSet($this->contentKey, new \ArrayObject());
-
         return $this;
     }
 
     public function appendElement(Element $element)
     {
         $this->pagesElements->offsetGet($this->contentKey)->append($element);
-
         return $this;
     }
 
-    public function make()
+    /**
+     * @return ArrayObject<Object> Pages references
+     */
+    public function getPagesReference()
     {
-        $this->buildPages();
-
-        return $this->out;
+        return $this->pagesReference;
     }
 
-    private function buildPages()
+    /**
+     * @return ArrayObject<Object> Pages contents
+     */
+    public function getPagesContent()
     {
-        foreach ($this->pagesReference as $key => $reference) {
-            $content = $this->pagesContent->offsetGet($key);
-            $contentReference = $content->getReference();
-            $reference->setContent($this->getPageReferenceContent($contentReference));
-            $content->setContent($this->getPageContentContent($contentReference));
-
-            $this->out .= "{$this->parse($reference->out())} {$this->parse($content->out())}";
-        }
+        return $this->pagesContent;
     }
 
-    private function getPageContentContent($reference)
+    /**
+     * @return ArrayObject<Element> Pages elements
+     */
+    public function getPagesElement()
     {
-        $elements = $this->pagesElements->offsetGet($reference);
-        $out = '';
-
-        foreach ($elements as $element) {
-            $out .= $this->parse($element->out());
-        }
-
-        return "{$this->getLenght($out)} {$out}";
+        return $this->pagesElements;
     }
 
-    private function getPageReferenceContent($content)
+    /**
+     * @return Object  Resources
+     */
+    public function getResourcesReference()
     {
-        $this->pageType->setValue(array(
-            'p' => $this->parentReference,
-            'r' => $this->resourcesReference,
-            'c' => $content,
-        ));
+        return $this->resourcesReference;
+    }
 
-        return $this->pageType->out();
+    /**
+     * @return Object Page
+     */
+    public function getParentReference()
+    {
+        return $this->parentReference;
     }
 
 }

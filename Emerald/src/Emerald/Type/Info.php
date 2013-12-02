@@ -24,12 +24,12 @@ class Info extends Type
     public function setValue($value)
     {
         $p = EmeraldEnum::PRODUCER;
-        $d = $value['d']; //D:YmdHis
-        $t = isset($value['t']) ? $value['t'] : '';
-        $s = isset($value['s']) ? $value['s'] : '';
-        $a = isset($value['a']) ? $value['a'] : '';
-        $k = isset($value['k']) ? $value['k'] : '';
-        $c = isset($value['c']) ? $value['c'] : '';
+        $d = "D:{$value['d']}";
+        $t = $value['t'];
+        $s = $value['s'];
+        $a = $value['a'];
+        $k = $value['k'];
+        $c = $value['c'];
 
         $this->out = sprintf($this->format, $p, $d, $t, $s, $a, $k, $c);
     }

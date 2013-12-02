@@ -2,35 +2,65 @@
 
 namespace Emerald\Pdf\Page;
 
+use Emerald\Interfaces\Pdf\Resource;
+
 class Font
 {
 
-    private $type;
+    private $familiy;
+    private $red;
+    private $green;
+    private $blue;
     private $bold;
+    private $italic;
+    private $underline;
 
-    public function __construct($type)
+    public function __construct($familiy)
     {
-        $this->type = $type;
+        $this->familiy = $familiy;
+        $this->bold = false;
+        $this->italic = false;
+        $this->underline = false;
+        $this->red = 0;
+        $this->green = 0;
+        $this->blue = 0;
     }
 
-    public function getType()
+    public function setFamiliy($familiy)
     {
-        return $this->type;
+        $this->familiy = $familiy;
+        return $this;
     }
 
-    public function getBold()
+    public function setBold()
     {
-        return $this->bold;
+        $this->bold = true;
+        return $this;
     }
 
-    public function setType($type)
+    public function setItalic()
     {
-        $this->type = $type;
+        $this->italic = true;
+        return $this;
     }
 
-    public function setBold($bold)
+    public function setUnderline()
     {
-        $this->bold = $bold;
+        $this->underline = true;
+        return $this;
+    }
+
+    public function setColor($red, $green, $blue)
+    {
+        $this->red = $red;
+        $this->green = $green;
+        $this->blue = $blue;
+        return $this;
+    }
+
+    public function getFamiliy()
+    {
+        return $this->familiy;
     }
 
 }

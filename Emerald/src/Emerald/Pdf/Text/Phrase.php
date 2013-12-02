@@ -3,8 +3,9 @@
 namespace Emerald\Pdf\Text;
 
 use Emerald\Interfaces\Pdf\Element;
+use Emerald\Pdf\Page\Font;
 
-class Text implements Element
+class Phrase  implements Element
 {
 
     /**
@@ -18,27 +19,31 @@ class Text implements Element
     private $fontSize;
 
     /**
-     * @var float text's left position
+     * @var float string's left position
      */
     private $left;
 
     /**
-     * @var float text's bottom position
+     * @var float string's bottom position
      */
     private $bottom;
 
     /**
-     * @var String text's content
+     * @var String string's content
      */
-    private $text;
+    private $string;
 
-    public function __construct($text, $left, $bottom)
+    /**
+     * @var Font font's text
+     */
+    private $font;
+
+    public function __construct($string, $left, $bottom, Font $font = null)
     {
-        $this->text = $text;
+        $this->string = $string;
         $this->left = $left;
         $this->bottom = $bottom;
-        $this->fontSize = 12.00;
-        $this->fontReference = 'F1';
+        $this->font = $font;
     }
 
     public function setFontReference($fontReference)
@@ -65,9 +70,9 @@ class Text implements Element
         return $this;
     }
 
-    public function setText($text)
+    public function setString($string)
     {
-        $this->text = $text;
+        $this->string = $string;
         return $this;
     }
 
@@ -91,14 +96,9 @@ class Text implements Element
         return $this->bottom;
     }
 
-    public function getText()
+    public function getString()
     {
-        return $this->text;
-    }
-
-    public function out()
-    {
-        return "BT /{$this->fontReference} {$this->fontSize} Tf {$this->left} {$this->bottom} Td ({$this->text})Tj ET";
+        return $this->string;
     }
 
 }

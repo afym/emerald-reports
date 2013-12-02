@@ -2,32 +2,21 @@
 
 namespace Emerald\Assembly\Document\Abstracts;
 
-use Emerald\Type\Length;
+use Emerald\Pdf\Page\Format;
 
-abstract class Stack
+class Stack
 {
 
-    protected $out;
-    protected $lengthType;
+    protected $format;
 
-    public function __construct()
+    public function __construct(Format $format)
     {
-        $this->out = '';
-        $this->lengthType = new Length();
+        $this->format = $format;
     }
 
-    public abstract function make();
-
-    protected function parse($out)
+    public function getFormat()
     {
-        return "$out \n";
-    }
-
-    protected function getLenght($out)
-    {
-        $this->lengthType->setValue(array('l' => strlen($out)));
-
-        return $this->lengthType->out();
+        return $this->format;
     }
 
 }

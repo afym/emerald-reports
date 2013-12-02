@@ -8,7 +8,7 @@ use Emerald\Constant\FontEncodings;
 /**
  * FontType object for text
  */
-class Font extends Type
+class FontType extends Type
 {
 
     public function __construct()
@@ -30,7 +30,7 @@ class Font extends Type
             $value['f'] = $value['f'] . '-Bold';
         }
         // -Oblique
-        if ($value['e']) {
+        if (!isset($value['e'])) {
             $value['e'] = FontEncodings::WINANSI;
         }
 

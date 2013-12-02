@@ -11,6 +11,15 @@ class Information
     private $keyWords;
     private $creator;
 
+    public function __construct()
+    {
+        $this->title = 'Emerald PDF';
+        $this->subject = 'Emerald Report';
+        $this->author = 'By Emerald';
+        $this->keyWords = 'emeralad, php, library';
+        $this->creator = 'By Emerald';
+    }
+
     public function getTitle()
     {
         return $this->title;
@@ -34,6 +43,11 @@ class Information
     public function getCreator()
     {
         return $this->creator;
+    }
+
+    public function getDate()
+    {
+        return (new \DateTime('NOW'))->format('Ymdhis');
     }
 
     public function setTitle($title)
