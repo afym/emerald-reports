@@ -7,7 +7,6 @@ use Emerald\Constant\FontEncodings;
 
 class Font
 {
-
     private $familiy;
     private $bold;
     private $italic;
