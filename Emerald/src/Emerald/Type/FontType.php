@@ -3,7 +3,6 @@
 namespace Emerald\Type;
 
 use Emerald\Type\Abstracts\Type;
-use Emerald\Constant\FontEncodings;
 
 /**
  * FontType object for text
@@ -30,9 +29,6 @@ class FontType extends Type
             $value['f'] = $value['f'] . '-Bold';
         }
         // -Oblique
-        if (!isset($value['e'])) {
-            $value['e'] = FontEncodings::WINANSI;
-        }
 
         $this->out = sprintf($this->format, $value['f'], $value['e']);
     }
