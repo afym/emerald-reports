@@ -1,8 +1,8 @@
 <?php
 /**
- * Emerald Library
- * 
+ * Emerald Library || Property of Jesus Christ King of Kings !!!
  * @package Document
+ * @bible John 3:16
  * @author Angel Ybarhuen <angel.fym@gmail.com>
  */
 namespace Emerald\Document;
