@@ -19,7 +19,7 @@ class ResourceBuilder extends ElementBuilder
     public function __construct(ResourceStack $resourceStack)
     {
         $this->resourcesType = new Resources();
-        $this->resourceStack  = resourceStack;
+        $this->resourceStack  = $resourceStack;
         $this->fontsOut = '';
         $this->xobjectsOut = '';
     }
@@ -29,7 +29,7 @@ class ResourceBuilder extends ElementBuilder
         $this->buildFonts();
         $this->buildResourceType();
 
-        return $this->out;
+        return $this->resourceStack->getResourceReference($this->out)->out();
     }
 
     private function buildResourceType()
@@ -50,7 +50,7 @@ class ResourceBuilder extends ElementBuilder
             $this->fontsOut .= $this->buildFont($reference, $font);
         }
     }
-
+    
     private function buildFont($reference, Font $font)
     {
         return (new FontBuilder($reference, $font))->buld();
