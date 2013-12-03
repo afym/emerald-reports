@@ -42,6 +42,21 @@ class TrailerStack extends Stack
         return $this;
     }
 
+    public function getSizeReference()
+    {
+        return $this->sizeReference;
+    }
+
+    public function getRootReference()
+    {
+        return $this->rootReference;
+    }
+
+    public function getInfoReference()
+    {
+        return $this->infoReference;
+    }
+
     public function getObjects()
     {
         return $this->objects;
