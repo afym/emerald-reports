@@ -3,9 +3,8 @@
 namespace Emerald\Pdf\Text;
 
 use Emerald\Interfaces\Pdf\Element;
-use Emerald\Pdf\Page\Font;
 
-class Phrase  implements Element
+class Phrase implements Element
 {
 
     /**
@@ -34,20 +33,15 @@ class Phrase  implements Element
     private $string;
 
     /**
-     * @var Font font's text
-     */
-    private $font;
-
-    /**
      * @var int red color 
      */
     private $red;
-    
+
     /**
      * @var int green color 
      */
     private $green;
-    
+
     /**
      * @var int blue color 
      */
@@ -58,17 +52,16 @@ class Phrase  implements Element
      */
     private $isColored;
 
-    public function __construct($string, $bottom, $left, $size = 8.0, Font $font = null)
+    public function __construct($string, $bottom, $left, $size = 8.0, $fontReference = null)
     {
         $this->string = $string;
         $this->left = $left;
         $this->bottom = $bottom;
-        $this->font = $font;
+        $this->fontReference = $fontReference;
         $this->size = $size;
         $this->red = 0;
         $this->green = 0;
         $this->blue = 0;
- 
     }
 
     public function setFontReference($fontReference)
@@ -126,11 +119,6 @@ class Phrase  implements Element
         return $this->string;
     }
 
-    public function getFont()
-    {
-        return $this->font;
-    }
-    
     public function setColor($red, $green, $blue)
     {
         $this->isColored = true;
@@ -144,17 +132,17 @@ class Phrase  implements Element
     {
         return $this->red;
     }
-    
+
     public function getGreen()
     {
         return $this->green;
     }
-    
+
     public function getBlue()
     {
         return $this->blue;
     }
-    
+
     public function isColored()
     {
         return $this->isColored;

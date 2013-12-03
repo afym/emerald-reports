@@ -2,16 +2,15 @@
 
 namespace Emerald\Pdf\Page;
 
-use Emerald\Interfaces\Pdf\Resource;
 use Emerald\Constant\FontEncodings;
 
 class Font
 {
+
     private $familiy;
     private $bold;
     private $italic;
     private $underline;
-    private $isColored;
     private $encoding;
 
     public function __construct($familiy)
@@ -52,7 +51,7 @@ class Font
         $this->encoding = $encoding;
         return $this;
     }
-    
+
     public function getFamiliy()
     {
         return $this->familiy;
@@ -62,19 +61,20 @@ class Font
     {
         return $this->bold;
     }
-    
+
     public function getItalic()
     {
         return $this->italic;
     }
-    
+
     public function getUnderline()
     {
         return $this->underline;
     }
-    
+
     public function getEncoding()
     {
         return $this->encoding;
     }
+
 }

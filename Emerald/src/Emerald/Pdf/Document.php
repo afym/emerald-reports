@@ -7,6 +7,7 @@ use Emerald\Pdf\Page\Format;
 use Emerald\Interfaces\Pdf\Element;
 use Emerald\Assembly\Document\PageStack;
 use Emerald\Assembly\Document\HeaderStack;
+use Emerald\Assembly\Resource\ResourceStack;
 use Emerald\Assembly\Document\MainBuilder;
 use Emerald\Document\Object;
 
@@ -16,6 +17,7 @@ class Document
     private $format;
     private $headerStack;
     private $pagesStack;
+    private $resourceStack;
     private $mainBuilder;
     private $objectCounter;
 
@@ -26,6 +28,18 @@ class Document
         $this->mainBuilder = new MainBuilder();
         $this->initHeaderStack($format);
         $this->initPagesStack($format);
+        $this->initResourceStack($format);
+    }
+
+    public function addFont(Font $font)
+    {
+        $this->resourceStack->addFont($font);
+        return $this;
+    }
+
+    public function getFontReference(Font $font)
+    {
+        $this->resourceStack->getFontReference($font);
     }
 
     public function addPage()
@@ -69,6 +83,12 @@ class Document
         $this->pagesStack = (new PageStack($format))
                 ->setParentReference($this->headerStack->getPage())
                 ->setResourcesReference($this->headerStack->getResource());
+    }
+
+    private function initResourceStack(Format $format)
+    {
+        $this->resourceStack = (new ResourceStack($format))
+                ->setResourceReference($this->headerStack->getResource());
     }
 
     private function newObject()

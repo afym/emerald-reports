@@ -2,11 +2,11 @@
 
 namespace Emerald\Assembly\Element;
 
-use Emerald\Assembly\Element\Abstracts\Stack;
+
 use Emerald\Interfaces\Pdf\Element;
 use Emerald\Assembly\Element\PhraseBuilder;
 
-class ElementFactory extends Stack
+class ElementFactory
 {
 
     private static $format;
@@ -22,8 +22,7 @@ class ElementFactory extends Stack
 
        switch ($class) {
            case 'Emerald\Pdf\Text\Phrase':
-               return (new PhraseBuilder($element , self::$format));
-               break;
+               return (new PhraseBuilder($element , self::$format))->build();
        }
     }
 
