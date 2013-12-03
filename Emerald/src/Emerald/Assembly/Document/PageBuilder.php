@@ -4,6 +4,7 @@ namespace Emerald\Assembly\Document;
 
 use Emerald\Assembly\Document\PageStack;
 use Emerald\Assembly\Document\Abstracts\Builder;
+use Emerald\Assembly\Element\ElementFactory;
 
 class PageBuilder extends Builder
 {
