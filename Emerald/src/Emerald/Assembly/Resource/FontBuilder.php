@@ -8,12 +8,14 @@ use Emerald\Pdf\Page\Font;
 
 class FontBuilder extends ElementBuilder
 {
-
+    
+    private $reference,
     private $fontType;
     private $font;
 
-    public function __construct(Font $font)
+    public function __construct($reference, Font $font)
     {
+        $this->reference = $reference;
         $this->fontType = new FontType();
         $this->font = $font;
     }
@@ -27,6 +29,7 @@ class FontBuilder extends ElementBuilder
     private function buildFontType()
     {
         $this->fontType->setValue(array(
+            'r' => $this->reference,
             'f' => $this->font->getFamily(),
             'b' => $this->font->getBold(),
             'e' => $this->font->getEncoding(),
