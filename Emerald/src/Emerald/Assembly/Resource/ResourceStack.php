@@ -39,6 +39,11 @@ class ResourceStack extends Stack
         return $this->fontStack->getFontReference($font);
     }
 
+    public function getResourceReference()
+    {
+        return $this->resourceReference;
+    }
+
     public function getFonts()
     {
         return $this->fontStack;
