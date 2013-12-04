@@ -5,9 +5,10 @@ namespace Emerald\Pdf;
 use Emerald\Pdf\Information;
 use Emerald\Pdf\Page\Format;
 use Emerald\Interfaces\Pdf\Element;
-use Emerald\Assembly\Document\PageStack;
 use Emerald\Assembly\Document\HeaderStack;
+use Emerald\Assembly\Document\PageStack;
 use Emerald\Assembly\Resource\ResourceStack;
+use Emerald\Assembly\Document\TrailerStack;
 use Emerald\Assembly\Document\MainBuilder;
 use Emerald\Document\Object;
 
@@ -18,6 +19,7 @@ class Document
     private $headerStack;
     private $pagesStack;
     private $resourceStack;
+    private $trailerStack;
     private $mainBuilder;
     private $objectCounter;
 
@@ -29,6 +31,7 @@ class Document
         $this->initHeaderStack($format);
         $this->initPagesStack($format);
         $this->initResourceStack($format);
+        $this->initTrailerStack($format);
     }
 
     public function addFont(Font $font)
@@ -76,6 +79,9 @@ class Document
                 ->setCatalog($this->newObject())
                 ->setResource($this->newObject())
                 ->setInformation($this->newObject());
+                // add in header 
+                // add in header
+                // add in header
     }
 
     private function initPagesStack(Format $format)
@@ -89,6 +95,14 @@ class Document
     {
         $this->resourceStack = (new ResourceStack($format))
                 ->setResourceReference($this->headerStack->getResource());
+    }
+
+    private function initTrailerStack(Format $format)
+    {
+        $this->trailerStack = (new TrailerStack($format))
+             ->setSizeReference($this->headerStack->x()) // add in header
+             ->setRootReference($this->headerStack->getPage()) // add in header
+             -setInfoReference($this->headerStack->getInformation()); // add in header
     }
 
     private function newObject()
