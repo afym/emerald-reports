@@ -15,7 +15,7 @@ class Page extends Type
     public function __construct()
     {
         parent::__construct();
-        $this->format = '<</Type /Page /Parent %s /Resources %s /Contents %s>>';
+        $this->format = '/Type /Page /Parent %s /Resources %s /Contents %s';
     }
 
     /**

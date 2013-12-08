@@ -4,7 +4,7 @@ namespace Emerald\Assembly\Resource;
 
 use Emerald\Assembly\Document\Abstracts\Stack;
 use Emerald\Pdf\Page\Format;
-use Emerald\Pdf\Page\Font;
+use Emerald\Pdf\Resources\Font;
 
 class FontStack extends Stack
 {
@@ -16,6 +16,7 @@ class FontStack extends Stack
     public function __construct(Format $format)
     {
         parent::__construct($format);
+        $this->reference = 1;
         $this->fonts = new \ArrayObject();
         $this->fontsMapped = new \ArrayObject();
     }
@@ -45,7 +46,7 @@ class FontStack extends Stack
 
     private function getReference()
     {
-        return "F {$this->reference}";
+        return "F{$this->reference}";
     }
 
     private function getId(Font $font)

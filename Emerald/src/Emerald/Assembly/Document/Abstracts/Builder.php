@@ -19,7 +19,7 @@ abstract class Builder
 
     private function newLine($out)
     {
-        return "$out \n";
+        return "$out\n";
     }
 
     abstract public function build();

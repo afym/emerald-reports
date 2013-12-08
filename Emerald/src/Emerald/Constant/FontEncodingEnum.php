@@ -2,7 +2,7 @@
 
 namespace Emerald\Constant;
 
-class FontEncodings
+class FontEncodingEnum
 {
 
     const WINANSI = 'WinAnsiEncoding';

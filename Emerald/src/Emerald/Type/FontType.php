@@ -18,7 +18,7 @@ class FontType extends Type
     public function __construct()
     {
         parent::__construct();
-        $this->format = '<< /%s <</Type /Font /BaseFont /%s /Subtype /Type1 /Encoding /%s >> >>';
+        $this->format = '/%s <</Type /Font /BaseFont /%s /Subtype /Type1 /Encoding /%s >>';
     }
 
     /**

@@ -16,7 +16,7 @@ class Info extends Type
     public function __construct()
     {
         parent::__construct();
-        $this->format = '<< /Producer (%s) /CreationDate (%s) /Title (%s) /Subject (%s) /Author (%s) /Keywords (%s) /Creator (%s) >>';
+        $this->format = '/Producer (%s) /CreationDate (%s) /Title (%s) /Subject (%s) /Author (%s) /Keywords (%s) /Creator (%s)';
     }
 
     /**

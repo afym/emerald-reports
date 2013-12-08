@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Emerald Library || Property of Jesus Christ King of Kings !!!
  * @package Document
  * @bible John 3:16
  * @author Angel Ybarhuen <angel.fym@gmail.com>
  */
+
 namespace Emerald\Document;
 
 use Emerald\Interfaces\OutputInterface;
@@ -28,8 +30,8 @@ class Object implements OutputInterface
     private $content;
 
     /**
-    * @var String format
-    */
+     * @var String format
+     */
     private $format;
 
     public function __construct($number, $revision = 0)
@@ -40,6 +42,12 @@ class Object implements OutputInterface
         $this->format = '%s %s obj << %s >> endobj';
     }
 
+    public function setContentType()
+    {
+        $this->format = str_replace(array('<<', '>>'), array('', ''), $this->format);
+        return $this;
+    }
+
     public function getNumber()
     {
         return $this->number;
@@ -48,7 +56,7 @@ class Object implements OutputInterface
     public function setNumber($number)
     {
         $this->number = $number;
-         return $this;
+        return $this;
     }
 
     public function getRevision()
@@ -59,7 +67,7 @@ class Object implements OutputInterface
     public function setRevision($revision)
     {
         $this->revision = $revision;
-         return $this;
+        return $this;
     }
 
     public function setContent($content)
@@ -87,4 +95,5 @@ class Object implements OutputInterface
     {
         return sprintf($this->format, $this->number, $this->revision, $this->content);
     }
+
 }

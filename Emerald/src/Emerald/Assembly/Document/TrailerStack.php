@@ -3,30 +3,25 @@
 namespace Emerald\Assembly\Document;
 
 use Emerald\Assembly\Document\Abstracts\Stack;
+use Emerald\Pdf\Page\Format;
 use Emerald\Document\Object;
 
 class TrailerStack extends Stack
 {
-    
+
     private $objects;
-    private $sizeReference;
     private $rootReference;
     private $infoReference;
 
-    public function __construct()
+    public function __construct(Format $format)
     {
+        parent::__construct($format);
         $this->objects = new \ArrayObject();
     }
 
-    public function appendObject(Object $object)
+    public function setObjects(\ArrayObject $objects)
     {
-        $this->objects->append($object);
-        return $this;
-    }
-
-    public function setSizeReference(Object $reference)
-    {
-        $this->sizeReference = $reference;
+        $this->objects = $objects;
         return $this;
     }
 
@@ -40,11 +35,6 @@ class TrailerStack extends Stack
     {
         $this->infoReference = $reference;
         return $this;
-    }
-
-    public function getSizeReference()
-    {
-        return $this->sizeReference;
     }
 
     public function getRootReference()
@@ -61,4 +51,5 @@ class TrailerStack extends Stack
     {
         return $this->objects;
     }
+
 }

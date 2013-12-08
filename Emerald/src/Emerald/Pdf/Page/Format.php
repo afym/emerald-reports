@@ -132,7 +132,7 @@ class Format
 
     public function getWidth()
     {
-        if ($this->orientation == OrientationEnum::LANDSCAPE) {
+        if ($this->orientation != OrientationEnum::LANDSCAPE) {
             return $this->size->getHeight();
         }
 
@@ -141,7 +141,7 @@ class Format
 
     public function getHeight()
     {
-        if ($this->orientation == OrientationEnum::LANDSCAPE) {
+        if ($this->orientation != OrientationEnum::LANDSCAPE) {
             return $this->size->getWidth();
         }
 

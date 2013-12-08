@@ -94,7 +94,7 @@ class HeaderStack extends Stack
 
     public function appendPageReference(Object $reference)
     {
-        $this->pagesReferenceKids .= " {$reference->getReference()}";
+        $this->pagesReferenceKids .= "{$reference->getReference()} ";
         $this->pagesReferenceCount++;
         return $this;
     }

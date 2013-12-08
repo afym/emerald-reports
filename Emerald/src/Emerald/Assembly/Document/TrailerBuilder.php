@@ -5,9 +5,11 @@ namespace Emerald\Assembly\Document;
 use Emerald\Assembly\Document\TrailerStack;
 use Emerald\Assembly\Document\Abstracts\Builder;
 use Emerald\Type\TrailerSize;
+use Emerald\Document\Object;
 
 class TrailerBuilder extends Builder
 {
+
     private $trailerStack;
     private $trailerSizeType;
     private $length;
@@ -27,8 +29,8 @@ class TrailerBuilder extends Builder
         $this->buildInitialCrossRow();
         $this->buildCrossTable();
         $this->buildTrailer();
-        $this->buildStartXref();
         $this->buildTrailerSize();
+        $this->buildStartXref();
         $this->buildFooter();
 
         return $this->out;
@@ -41,32 +43,27 @@ class TrailerBuilder extends Builder
 
     private function buildXrefCounter()
     {
-        $this->append("0 {$this->trailerStack->getObjects() + 1}");
+        $this->append("0 {$this->getTotalObjects()}");
     }
 
-    private buildInitialCrossRow()
+    private function buildInitialCrossRow()
     {
-        $this->append('0000000000 65535');
+        $this->append('0000000000 65535 f');
     }
 
     private function buildCrossTable()
     {
         $objects = $this->trailerStack->getObjects();
- 
+
         foreach ($objects as $object) {
             $this->append($this->getCrossRowFormat($object->getNumber()));
             $this->incrementLength($object);
-        }        
+        }
     }
 
     private function buildTrailer()
     {
         $this->append('trailer');
-    }
-
-    private function buildStartXref()
-    {
-        $this->append("startxref {$this->length}");
     }
 
     private function buildTrailerSize()
@@ -75,11 +72,16 @@ class TrailerBuilder extends Builder
         $this->append($this->trailerSizeType->out());
     }
 
+    private function buildStartXref()
+    {
+        $this->append("startxref {$this->length}");
+    }
+
     private function buildFooter()
     {
         $this->append('%%EOF');
     }
-    
+
     private function getCrossRowFormat($number)
     {
         return sprintf('%010d 00000 n ', $number);
@@ -89,13 +91,19 @@ class TrailerBuilder extends Builder
     {
         $this->length += $object->getLength();
     }
-    
+
+    private function getTotalObjects()
+    {
+        return $this->trailerStack->getObjects()->count() + 1;
+    }
+
     private function setTrailerSizeValue()
     {
         $this->trailerSizeType->setValue(array(
-            's' => $this->trailerStack->getSizeReference()->getReference(), 
-            'r' => $this->trailerStack->getRootReference()->getReference(), 
+            's' => $this->getTotalObjects(),
+            'r' => $this->trailerStack->getRootReference()->getReference(),
             'i' => $this->trailerStack->getInfoReference()->getReference(),
         ));
     }
+
 }

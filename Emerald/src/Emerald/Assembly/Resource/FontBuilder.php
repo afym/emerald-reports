@@ -2,19 +2,20 @@
 
 namespace Emerald\Assembly\Resource;
 
-use Emerald\Assembly\Document\Abstracts\ElementBuilder;
+use Emerald\Assembly\Document\Abstracts\Builder;
 use Emerald\Type\FontType;
-use Emerald\Pdf\Page\Font;
+use Emerald\Pdf\Resources\Font;
 
-class FontBuilder extends ElementBuilder
+class FontBuilder extends Builder
 {
     
-    private $reference,
+    private $reference;
     private $fontType;
     private $font;
 
     public function __construct($reference, Font $font)
     {
+        parent::__construct();
         $this->reference = $reference;
         $this->fontType = new FontType();
         $this->font = $font;

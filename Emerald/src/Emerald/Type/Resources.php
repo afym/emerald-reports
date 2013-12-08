@@ -15,7 +15,7 @@ class Resources extends Type
     public function __construct()
     {
         parent::__construct();
-        $this->format = '<< /ProcSet [/PDF /Text /ImageB /ImageC /ImageI] /Font << %s >> /XObject << %s >> >>';
+        $this->format = '/ProcSet [/PDF /Text /ImageB /ImageC /ImageI] /Font <<%s>> /XObject <<%s>>';
     }
 
     /**

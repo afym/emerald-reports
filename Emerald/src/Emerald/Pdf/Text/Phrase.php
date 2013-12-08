@@ -52,7 +52,7 @@ class Phrase implements Element
      */
     private $isColored;
 
-    public function __construct($string, $bottom, $left, $size = 8.0, $fontReference = null)
+    public function __construct($string, $bottom, $left, $size = 8.0, $fontReference = 'F1')
     {
         $this->string = $string;
         $this->left = $left;

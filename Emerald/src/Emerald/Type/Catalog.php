@@ -15,7 +15,7 @@ class Catalog extends Type
     public function __construct()
     {
         parent::__construct();
-        $this->format = '<</Type /Catalog /Pages %s >>';
+        $this->format = '/Type /Catalog /Pages %s';
     }
 
     /**

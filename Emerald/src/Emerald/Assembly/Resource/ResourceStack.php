@@ -3,7 +3,7 @@
 namespace Emerald\Assembly\Resource;
 
 use Emerald\Assembly\Document\Abstracts\Stack;
-use Emerald\Pdf\Page\Font;
+use Emerald\Pdf\Resources\Font;
 use Emerald\Assembly\Resource\FontStack;
 use Emerald\Constant\FontEnum;
 use Emerald\Pdf\Page\Format;
@@ -18,8 +18,8 @@ class ResourceStack extends Stack
     public function __construct(Format $format)
     {
         parent::__construct($format);
-        $this->fontStack = new FontStack();
-        $this->fontStack->appendFont((new Font())->getFamiliy(FontEnum::HEVELTICA));
+        $this->fontStack = new FontStack($format);
+        $this->fontStack->appendFont((new Font(FontEnum::HEVELTICA)));
     }
 
     public function setResourceReference(Object $reference)
@@ -46,7 +46,7 @@ class ResourceStack extends Stack
 
     public function getFonts()
     {
-        return $this->fontStack;
+        return $this->fontStack->getFonts();
     }
 
 }

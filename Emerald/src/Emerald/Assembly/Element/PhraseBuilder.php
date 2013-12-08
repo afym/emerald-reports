@@ -1,14 +1,13 @@
 <?php
 
 namespace Emerald\Assembly\Element;
-
-use Emerald\Assembly\Document\Abstracts\ElementBuilder;
+use Emerald\Assembly\Document\Abstracts\Builder;
 use Emerald\Pdf\Text\Phrase;
 use Emerald\Pdf\Page\Format;
 use Emerald\Type\Text;
 use Emerald\Type\ColorText;
 
-class PhraseBuilder extends ElementBuilder
+class PhraseBuilder extends Builder
 {
 
     private $phrase;

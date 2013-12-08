@@ -5,6 +5,7 @@ namespace Emerald\Assembly\Element;
 
 use Emerald\Interfaces\Pdf\Element;
 use Emerald\Assembly\Element\PhraseBuilder;
+use Emerald\Pdf\Page\Format;
 
 class ElementFactory
 {

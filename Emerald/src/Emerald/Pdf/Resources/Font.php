@@ -1,8 +1,8 @@
 <?php
 
-namespace Emerald\Pdf\Page;
+namespace Emerald\Pdf\Resources;
 
-use Emerald\Constant\FontEncodings;
+use Emerald\Constant\FontEncodingEnum;
 
 class Font
 {
@@ -19,7 +19,7 @@ class Font
         $this->bold = false;
         $this->italic = false;
         $this->underline = false;
-        $this->encoding = FontEncodings::WINANSI;
+        $this->encoding = FontEncodingEnum::WINANSI;
     }
 
     public function setFamiliy($familiy)
@@ -52,7 +52,7 @@ class Font
         return $this;
     }
 
-    public function getFamiliy()
+    public function getFamily()
     {
         return $this->familiy;
     }

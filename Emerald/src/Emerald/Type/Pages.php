@@ -16,7 +16,7 @@ class Pages extends Type
     {
         parent::__construct();
 
-        $this->format = '<</Type /Pages /Kids [%s] /Count %s /MediaBox [0 0 %s %s] >>';
+        $this->format = ' /Type /Pages /Kids [%s] /Count %s /MediaBox [0 0 %s %s] ';
     }
 
     /**
