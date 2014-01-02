@@ -45,8 +45,8 @@ class Document
     }
 
     public function getFontReference(Font $font)
-    {
-        $this->resourceStack->getFontReference($font);
+    {     
+        return $this->resourceStack->getFontReference($font);
     }
 
     public function addPage()

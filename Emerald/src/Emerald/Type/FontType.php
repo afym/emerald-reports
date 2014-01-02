@@ -38,4 +38,11 @@ class FontType extends Type
         $this->out = sprintf($this->format, $value['r'], $value['f'], $value['e']);
     }
 
+    /*
+if($name!='Symbol' && $name!='ZapfDingbats')
+				$this->_out('/Encoding /WinAnsiEncoding');
+			$this->_out('>>');
+     * 
+     * 
+     *      */
 }

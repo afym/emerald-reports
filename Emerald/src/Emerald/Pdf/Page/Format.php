@@ -44,10 +44,10 @@ class Format
     {
         $this->size = !is_null($size) ? DimensionFactory::get($size) : DimensionFactory::get(SizeEnum::A4);
         $this->version = !is_null($version) ? $version : VersionEnum::PDF_1_7;
-        $this->top = !is_null($top) ? $top : 5;
-        $this->bottom = !is_null($bottom) ? $bottom : 5;
-        $this->left = !is_null($left) ? $left : 5;
-        $this->top = !is_null($right) ? $right : 5;
+        $this->top = !is_null($top) ? $top : 0;
+        $this->bottom = !is_null($bottom) ? $bottom : 0;
+        $this->left = !is_null($left) ? $left : 0;
+        $this->top = !is_null($right) ? $right : 0;
         $this->orientation = OrientationEnum::PORTRAIT;
     }
 

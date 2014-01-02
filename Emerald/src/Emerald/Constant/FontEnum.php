@@ -5,10 +5,10 @@ namespace Emerald\Constant;
 class FontEnum
 {
 
-    const COURIER = 'courier';
+    const COURIER = 'Courier';
     const HEVELTICA = 'Helvetica';
-    const TIMES = 'times';
-    const SYMBOL = 'symbol';
-    const ZAPFDONGBATS = 'zapfdingbats';
+    const TIMES = 'Times';
+    const SYMBOL = 'Symbol';
+    const ZAPFDONGBATS = 'ZapfDingbats';
 
 }
