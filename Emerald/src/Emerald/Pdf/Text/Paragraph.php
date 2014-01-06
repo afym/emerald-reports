@@ -2,21 +2,14 @@
 
 namespace Emerald\Pdf\Text;
 
-use Emerald\Interfaces\Pdf\Element;
+use Emerald\Pdf\Text\Phrase;
 
-class Paragraph implements Element
+class Paragraph extends Phrase
 {
 
-    private $content;
-
-    public function __construct($content)
+    public function __construct($string, $bottom, $left, $size = 8.0, $fontReference = 'F1')
     {
-        $this->content = $content;
-    }
-
-    public function out()
-    {
-        
+        parent::__construct($string, $bottom, $left, $size, $fontReference);
     }
 
 }

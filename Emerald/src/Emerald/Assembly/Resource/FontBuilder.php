@@ -33,7 +33,7 @@ class FontBuilder extends Builder
             'r' => $this->reference,
             'f' => $this->font->getFamily(),
             'b' => $this->font->getBold(),
-            'e' => $this->font->getEncoding(),
+            'i' => $this->font->getItalic(),
         ));
 
         $this->append($this->fontType->out());

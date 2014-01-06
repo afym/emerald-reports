@@ -2,8 +2,6 @@
 
 namespace Emerald\Pdf\Resources;
 
-use Emerald\Constant\FontEncodingEnum;
-
 class Font
 {
 
@@ -11,7 +9,6 @@ class Font
     private $bold;
     private $italic;
     private $underline;
-    private $encoding;
 
     public function __construct($familiy)
     {
@@ -19,7 +16,6 @@ class Font
         $this->bold = false;
         $this->italic = false;
         $this->underline = false;
-        $this->encoding = FontEncodingEnum::WINANSI;
     }
 
     public function setFamiliy($familiy)
@@ -46,12 +42,6 @@ class Font
         return $this;
     }
 
-    public function setEncoding($encoding)
-    {
-        $this->encoding = $encoding;
-        return $this;
-    }
-
     public function getFamily()
     {
         return $this->familiy;
@@ -70,11 +60,6 @@ class Font
     public function getUnderline()
     {
         return $this->underline;
-    }
-
-    public function getEncoding()
-    {
-        return $this->encoding;
     }
 
 }
