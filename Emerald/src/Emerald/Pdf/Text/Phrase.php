@@ -23,9 +23,9 @@ class Phrase implements Element
     private $left;
 
     /**
-     * @var float string's bottom position
+     * @var float string's top position
      */
-    private $bottom;
+    private $top;
 
     /**
      * @var String string's content
@@ -52,11 +52,11 @@ class Phrase implements Element
      */
     private $isColored;
 
-    public function __construct($string, $bottom, $left, $size = 8.0, $fontReference = 'F1')
+    public function __construct($string, $top, $left, $size = 8.0, $fontReference = 'F1-Helvetica-0-0')
     {
         $this->string = $string;
         $this->left = $left;
-        $this->bottom = $bottom;
+        $this->top = $top;
         $this->fontReference = $fontReference;
         $this->size = $size;
         $this->red = 0;
@@ -82,9 +82,9 @@ class Phrase implements Element
         return $this;
     }
 
-    public function setBottom($bottom)
+    public function setTop($top)
     {
-        $this->bottom = $bottom;
+        $this->top = $top;
         return $this;
     }
 
@@ -109,9 +109,9 @@ class Phrase implements Element
         return $this->left;
     }
 
-    public function getBottom()
+    public function getTop()
     {
-        return $this->bottom;
+        return $this->top;
     }
 
     public function getString()

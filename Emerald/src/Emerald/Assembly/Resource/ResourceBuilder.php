@@ -45,8 +45,8 @@ class ResourceBuilder extends Builder
 
     private function buildFonts()
     {
-        $fonts = $this->resourceStack->getFonts();
-       
+        $fonts = $this->getFonts();
+
         foreach ($fonts as $reference => $font) {
             $this->fontsOut .= $this->buildFont($reference, $font);
         }
@@ -56,6 +56,11 @@ class ResourceBuilder extends Builder
     {
         $fontBuilder = new FontBuilder($reference, $font);
         return $fontBuilder->build();
+    }
+
+    public function getFonts()
+    {
+        return $this->resourceStack->getFonts();
     }
 
 }

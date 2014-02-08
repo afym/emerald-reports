@@ -47,7 +47,7 @@ class Format
         $this->top = !is_null($top) ? $top : 0;
         $this->bottom = !is_null($bottom) ? $bottom : 0;
         $this->left = !is_null($left) ? $left : 0;
-        $this->top = !is_null($right) ? $right : 0;
+        $this->right = !is_null($right) ? $right : 0;
         $this->orientation = OrientationEnum::PORTRAIT;
     }
 
@@ -133,19 +133,18 @@ class Format
     public function getWidth()
     {
         if ($this->orientation != OrientationEnum::LANDSCAPE) {
-            return $this->size->getHeight();
+            return $this->size->getWidth();
         }
 
-        return $this->size->getWidth();
+        return $this->size->getHeight();
     }
 
     public function getHeight()
     {
         if ($this->orientation != OrientationEnum::LANDSCAPE) {
-            return $this->size->getWidth();
+            return $this->size->getHeight();
         }
-
-        return $this->size->getHeight();
+        return $this->size->getWidth();
     }
 
 }

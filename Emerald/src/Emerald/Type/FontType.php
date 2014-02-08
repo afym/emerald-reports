@@ -37,7 +37,15 @@ class FontType extends Type
         $font = "{$value['f']}{$this->decorationFont($value)}";
         $encoding = $this->getEncoding($value);
 
-        $this->out = sprintf($this->format, $value['r'], $font, $encoding);
+        $this->out = sprintf($this->format, $this->getReference($value['r']), $font, $encoding);
+    }
+
+    private function getReference($reference)
+    {
+        $explode = explode('-', $reference);
+        $value = isset($explode[0]) ? $explode[0] : 'F1';
+
+        return $value;
     }
 
     private function decorationFont($value)

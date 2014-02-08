@@ -1,13 +1,14 @@
 <?php
 
 namespace Emerald\Assembly\Element;
-use Emerald\Assembly\Document\Abstracts\Builder;
+
 use Emerald\Pdf\Text\Phrase;
 use Emerald\Pdf\Page\Format;
 use Emerald\Type\Text;
 use Emerald\Type\ColorText;
+use Emerald\Assembly\Element\TextBuilder;
 
-class PhraseBuilder extends Builder
+class PhraseBuilder extends TextBuilder
 {
 
     private $phrase;
@@ -19,6 +20,7 @@ class PhraseBuilder extends Builder
     {
         parent::__construct();
         $this->phrase = $phrase;
+        $this->textBuilder = $phrase;
         $this->format = $format;
         $this->text = new Text();
         $this->color = new ColorText();
@@ -26,6 +28,7 @@ class PhraseBuilder extends Builder
 
     public function build()
     {
+        $this->processReference();
         $this->buildText();
         $this->validateColored();
 
@@ -35,7 +38,7 @@ class PhraseBuilder extends Builder
     private function buildText()
     {
         $this->text->setValue(array(
-            'f' => $this->phrase->getFontReference(),
+            'f' => $this->reference,
             's' => $this->phrase->getSize(),
             'l' => $this->getLeft(),
             'b' => $this->getBottom(),
@@ -63,26 +66,14 @@ class PhraseBuilder extends Builder
         }
     }
 
-    private function getBottom()
-    {
-        $height = $this->format->getHeight() - (2 * $this->format->getBottom());
-
-        if ($this->phrase->getBottom() < $height) {
-            return $this->phrase->getBottom() + $this->format->getBottom();
-        }
-
-        return $height;
-    }
-
     private function getLeft()
     {
-        $width = $this->format->getWidth() - (2 * $this->format->getLeft());
+        return $this->phrase->getLeft() + $this->format->getLeft();
+    }
 
-        if ($this->phrase->getLeft() < $width) {
-            return $this->phrase->getLeft() + $this->format->getLeft();
-        }
-
-        return $width;
+    private function getBottom()
+    {
+        return $this->format->getHeight() - $this->phrase->getTop() - $this->format->getTop();
     }
 
 }

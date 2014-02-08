@@ -12,6 +12,7 @@ class FontStack extends Stack
     private $fonts;
     private $fontsMapped;
     private $reference;
+    private $currentFont;
 
     public function __construct(Format $format)
     {
@@ -23,6 +24,7 @@ class FontStack extends Stack
 
     public function appendFont(Font $font)
     {
+        $this->currentFont = $font;
         $this->fonts->offsetSet($this->getReference(), $font);
         $this->fontsMapped->offsetSet($this->getId($font), $this->getReference());
         $this->incrementReference();
@@ -46,7 +48,10 @@ class FontStack extends Stack
 
     private function getReference()
     {
-        return "F{$this->reference}";
+        $b = $this->currentFont->getBold() ? 1 : 0;
+        $i = $this->currentFont->getItalic()? 1 : 0;
+
+        return "F{$this->reference}-{$this->currentFont->getFamily()}-{$b}-{$i}";
     }
 
     private function getId(Font $font)

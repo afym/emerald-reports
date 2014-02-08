@@ -28,7 +28,7 @@ class Pages extends Type
      */
     public function setValue($value)
     {
-        $this->out = sprintf($this->format, $value['k'], $value['c'], $value['h'], $value['w']);
+        $this->out = sprintf($this->format, $value['k'], $value['c'], $value['w'], $value['h']);
     }
 
 }

@@ -5,6 +5,7 @@ namespace Emerald\Assembly\Element;
 
 use Emerald\Interfaces\Pdf\Element;
 use Emerald\Assembly\Element\PhraseBuilder;
+use Emerald\Assembly\Element\ParagraphBuilder;
 use Emerald\Pdf\Page\Format;
 
 class ElementFactory
@@ -24,6 +25,8 @@ class ElementFactory
        switch ($class) {
            case 'Emerald\Pdf\Text\Phrase':
                return (new PhraseBuilder($element , self::$format))->build();
+           case 'Emerald\Pdf\Text\Paragraph':
+               return (new ParagraphBuilder($element, self::$format))->build();
        }
     }
 
